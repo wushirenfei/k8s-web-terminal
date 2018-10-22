@@ -1,0 +1,5 @@
+Flask==0.12.2
+Flask-Sockets==0.2.1
+docker==3.5.0
+kubernetes==7.0.0
+Werkzeug==0.14.1

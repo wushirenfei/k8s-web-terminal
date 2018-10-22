@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+<form style="width:60%;margin: auto; padding-top: 100px;" action="/terminal/window">
+  <div class="form-group">
+    <label for="namespace">请输入名字空间</label>
+    <input class="form-control" name="namspace" placeholder="Kubernetes Namespace">
+  </div>
+  <div class="form-group">
+    <label for="pod-name">请输入对应Pod名称</label>
+    <input class="form-control" name="pod" placeholder="Pod Name">
+  </div>
+  <div class="form-group">
+    <label for="container-name">请输入对应容器名称</label>
+    <input class="form-control" name="container" placeholder="Container Name">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</body>
+</html>

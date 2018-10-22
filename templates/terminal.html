@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='xterm/dist/xterm.css') }}">
+    <meta charset="UTF-8">
+    <title>Kubernetes Web Terminal</title>
+</head>
+<body>
+<div id="terminal"></div>
+<script src="{{ url_for('static', filename='js/jquery-1.12.4.js') }}"></script>
+<script src="{{ url_for('static', filename='xterm/dist/xterm.js') }}"></script>
+<script src="{{ url_for('static', filename='xterm/dist/addons/attach/attach.js') }}"></script>
+<script>
+    (function ($) {
+        $.getUrlParam = function (name) {
+            let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            let r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]); return null;
+        }
+    })(jQuery);
+
+    let wsPing = null;
+    function ping(ws) {
+        console.log('in ping func', ws.state);
+        if (ws.readyState == ws.CLOSED) {
+            clearInterval(wsPing)
+        } else {
+            ws.send('__ping__');
+        }
+    }
+
+    let ws_url = 'ws://' + `${window.location.host}` + '/terminal/' +
+        `${$.getUrlParam('namspace')}` + '/' +
+        `${$.getUrlParam('pod')}` + '/' +
+        `${$.getUrlParam('container')}`;
+    console.log(ws_url);
+    let term = new Terminal({cursorBlink: true, focus: true});
+    term.open(document.getElementById('#terminal'));
+    term.writeln("welcome to use docker web terminal!");
+    let socket = new WebSocket(ws_url);
+    term.attach(socket);
+
+    socket.onopen = function() {
+        wsPing = setInterval(()=>{ping(socket)}, 5000);
+    };
+    socket.onclose = function () {
+        term.writeln("closed. Thank you for use!");
+    };
+</script>
+</body>
+</html>
