@@ -2,7 +2,7 @@
 # Copyright 2018 Alex Ma
 
 """
-:author Alex Ma (machao@qutoutiao.net)
+:author Alex Ma
 :date 2018/10/15 
 
 """
@@ -52,13 +52,13 @@ class K8SClient(KubernetesAPI):
     def gen_ca():
         ssl_ca_cert = os.path.join(
             os.path.dirname(os.path.dirname(__file__)),
-            '_credentials/dev/kubernetes_dev_ca_cert')
+            '_credentials/kubernetes_dev_ca_cert')
         key_file = os.path.join(
             os.path.dirname(os.path.dirname(__file__)),
-            '_credentials/dev/kubernetes_dev_key')
+            '_credentials/kubernetes_dev_key')
         cert_file = os.path.join(
             os.path.dirname(os.path.dirname(__file__)),
-            '_credentials/dev/kubernetes_dev_cert')
+            '_credentials/kubernetes_dev_cert')
 
         return ssl_ca_cert, key_file, cert_file
 
@@ -70,10 +70,6 @@ class K8SClient(KubernetesAPI):
             '&& ([ -x /usr/bin/script ] '
             '&& /usr/bin/script -q -c "/bin/bash" /dev/null || exec /bin/bash) '
             '|| exec /bin/sh']
-
-        # namespace = 'qtt-ops-qa'
-        # pod_name = 'stack-webapp-50-d95c996d7-bq9jl'
-        # container = 'stack-webapp-50'
 
         container_stream = stream(
             self.client_core_v1.connect_get_namespaced_pod_exec,

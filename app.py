@@ -2,7 +2,7 @@
 # Copyright 2018 Alex Ma
 
 """
-:author Alex Ma (machao@qutoutiao.net)
+:author Alex Ma
 :date 2018/10/15
 
 """
@@ -54,6 +54,7 @@ def terminal_socket(ws, namespace, pod, container):
             if message is not None:
                 if message != '__ping__':
                     container_stream.write_stdin(message)
+        container_stream.write_stdin('exit\r')
     except Exception as err:
         log.error('Connect container error: {}'.format(err))
     finally:

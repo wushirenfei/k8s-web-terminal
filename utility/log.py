@@ -2,7 +2,7 @@
 # Copyright 2018 Alex Ma
 
 """
-:author Alex Ma (machao@qutoutiao.net)
+:author Alex Ma
 :date 2018/10/18 
 
 """
