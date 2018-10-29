@@ -1,4 +1,2 @@
-*.py linguist-language=python
-*.js linguist-language=python
-*.css linguist-language=python
-*.html linguist-language=python
+static/* linguist-vendored
+templates/* linguist-vendored
