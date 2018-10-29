@@ -1,4 +1,5 @@
-# web_terminal_kubernetes
+# web terminal kubernetes
+K8S web terminal demo.
 
 The demo refer to personal blog https://blog.csdn.net/duxiangwushirenfei/article/details/83341574.
 
